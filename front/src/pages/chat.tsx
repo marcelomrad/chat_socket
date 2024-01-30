@@ -43,6 +43,7 @@ const Chat = () => {
     function onNotificationEvent(value: IMessage) {
       console.log("hello");
     }
+    
 
     socketInstance.on("notification", onNotificationEvent);
     socketInstance.on("message", onMessageEvent);
@@ -58,14 +59,15 @@ const Chat = () => {
       text: inputValue,
       name: username,
       id: uuid(),
-      image: profile1,
+      //gambiarra era para vir do backend
+      image: username === "marcelo" ? profile1 : profile2,
     };
 
     socketInstance.emit("message", newMessage);
 
     setMessages((previous) => [
       ...previous,
-      { ...newMessage, image: profile2, isOwner: true },
+      { ...newMessage, image: username == "marcelo"? profile1: profile2, isOwner: true },
     ]);
   };
 

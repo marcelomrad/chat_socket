@@ -24,6 +24,11 @@ class App {
             socket.on('disconnect', () => {
                 console.log('Client disconnected');
             });
+
+            socket.on('message', (message) => {
+                //envia a mensagem para todos, menos para quem esta enviando
+               socket.broadcast.emit('message', message);
+            });
         })
     }
 }
